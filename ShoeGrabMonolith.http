@@ -1,0 +1,6 @@
+@ShoeGrabMonolith_HostAddress = http://localhost:5192
+
+GET {{ShoeGrabMonolith_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
