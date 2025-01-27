@@ -1,12 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 using ShoeGrabMonolith.Database.Contexts;
 
-namespace ShoeGrabMonolith.Database.Management;
+namespace ShoeGrabMonolith.Extensions;
 
-public static class MigrationsManager
+public static class AppExtension
 {
-    public static void ApplyMigrations(WebApplication app)
+    public static void ApplyMigrations(this WebApplication app)
     {
         using (var scope = app.Services.CreateScope())
         {

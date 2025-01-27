@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using ShoeGrabMonolith.Database.Contexts;
-using ShoeGrabMonolith.Database.Management;
+using ShoeGrabMonolith.Extensions;
 using ShoeGrabMonolith.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,7 +20,7 @@ builder.Services.AddScoped<IUserManagementService, UserManagementService>();
 
 var app = builder.Build();
 
-MigrationsManager.ApplyMigrations(app);
+app.ApplyMigrations();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
