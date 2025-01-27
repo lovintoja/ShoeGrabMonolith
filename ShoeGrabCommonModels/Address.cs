@@ -1,4 +1,4 @@
-﻿namespace ShoeGrabModels;
+﻿namespace ShoeGrabCommonModels;
 public class Address
 {
     public int Id { get; set; }

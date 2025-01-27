@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35027.167
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoeGrabMonolith", ".\ShoeGrabMonolith.csproj", "{CC799698-F280-4DBC-8C68-4DFCC582DA72}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoeGrabMonolith", ".\ShoeGrabMonolith\ShoeGrabMonolith.csproj", "{CC799698-F280-4DBC-8C68-4DFCC582DA72}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoeGrabModels", "ShoeGrabModels\ShoeGrabModels.csproj", "{8FE9745C-B9AE-42D4-9FF9-043063A345D4}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Projects", "Projects", "{AD3838FA-B965-4521-9F64-F71CDEE0FE5F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoeGrabCommonModels", ".\ShoeGrabCommonModels\ShoeGrabCommonModels.csproj", "{35C1538E-5B91-4CEC-A9EB-9A6263448C06}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,13 +19,16 @@ Global
 		{CC799698-F280-4DBC-8C68-4DFCC582DA72}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC799698-F280-4DBC-8C68-4DFCC582DA72}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CC799698-F280-4DBC-8C68-4DFCC582DA72}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8FE9745C-B9AE-42D4-9FF9-043063A345D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8FE9745C-B9AE-42D4-9FF9-043063A345D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8FE9745C-B9AE-42D4-9FF9-043063A345D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8FE9745C-B9AE-42D4-9FF9-043063A345D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35C1538E-5B91-4CEC-A9EB-9A6263448C06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35C1538E-5B91-4CEC-A9EB-9A6263448C06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35C1538E-5B91-4CEC-A9EB-9A6263448C06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35C1538E-5B91-4CEC-A9EB-9A6263448C06}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{35C1538E-5B91-4CEC-A9EB-9A6263448C06} = {AD3838FA-B965-4521-9F64-F71CDEE0FE5F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {56C23D38-EB86-4D78-8F37-A3B45162852A}
