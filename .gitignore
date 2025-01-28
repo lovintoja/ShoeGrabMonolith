@@ -1,7 +1,5 @@
+*/**/bin/*
+*/**/obj/*
 bin/*
 obj/*
 .vs/*
-ShoeGrabCommonModels/bin/*
-ShoeGrabCommonModels/obj/*
-ShoeGrabMonolith/bin/*
-ShoeGrabMonolith/obj/*

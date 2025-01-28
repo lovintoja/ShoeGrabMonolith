@@ -28,6 +28,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ShoeGrabCommonModels\ShoeGrabCommonModels.csproj" />
+    <ProjectReference Include="..\ShoeGrabOrderManagement\ShoeGrabOrderManagement.csproj" />
+    <ProjectReference Include="..\ShoeGrabProductManagement\ShoeGrabProductManagement.csproj" />
+    <ProjectReference Include="..\ShoeGrabUserManagement\ShoeGrabUserManagement.csproj" />
   </ItemGroup>
 
 </Project>

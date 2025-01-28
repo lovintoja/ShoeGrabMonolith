@@ -37,7 +37,7 @@ public class AuthenticationController : ControllerBase
     }
 
     [Authorize]
-    [HttpGet]
+    [HttpGet("get_data")]
     public IActionResult GetProtectedData()
     {
         var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
