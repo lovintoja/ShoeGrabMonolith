@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ShoeGrabMonolith.Database.Contexts;
+using ShoeGrabCommonModels.Contexts;
 
 namespace ShoeGrabMonolith.Extensions;
 
