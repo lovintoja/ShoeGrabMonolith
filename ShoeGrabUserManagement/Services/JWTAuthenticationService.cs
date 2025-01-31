@@ -1,36 +1,38 @@
-﻿using Microsoft.IdentityModel.Tokens;
-using ShoeGrabMonolith.Database.Contexts;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
+﻿using System.Security.Claims;
 using System.Text;
-namespace ShoeGrabMonolith.Services;
+using Microsoft.Extensions.Configuration;
+using System.IdentityModel.Tokens.Jwt;
+using Microsoft.IdentityModel.Tokens;
+using ShoeGrabCommonModels;
+
+namespace ShoeGrabUserManagement.Services;
 
 public class JWTAuthenticationService : ITokenService
 {
     private readonly IConfiguration _configuration;
-    private readonly UserContext _context;
 
-    public JWTAuthenticationService(IConfiguration configuration, UserContext context)
+    public JWTAuthenticationService(IConfiguration configuration)
     {
         _configuration = configuration;
-
     }
 
-    public string GenerateToken(int id)
+    public string GenerateToken(User user)
     {
         var jwtSettings = _configuration.GetSection("JwtSettings");
         var secretKey = Encoding.ASCII.GetBytes(jwtSettings["Secret"]);
 
-        var claims = new[]
+        var claims = new List<Claim>
         {
-        new Claim(ClaimTypes.NameIdentifier, id.ToString()),
-        // Add other claims as needed (e.g., roles)
-    };
+           new Claim(ClaimTypes.Authentication, user.Id.ToString()),
+           new Claim(ClaimTypes.NameIdentifier, user.Username),
+           new Claim(ClaimTypes.Email, user.Email),
+           new Claim(ClaimTypes.Role, user.Role)
+        };
 
         var tokenDescriptor = new SecurityTokenDescriptor
         {
             Subject = new ClaimsIdentity(claims),
-            Expires = DateTime.UtcNow.AddHours(1), // Token expiration time
+            Expires = DateTime.UtcNow.AddHours(1),
             Issuer = jwtSettings["Issuer"],
             Audience = jwtSettings["Audience"],
             SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(secretKey), SecurityAlgorithms.HmacSha256Signature)

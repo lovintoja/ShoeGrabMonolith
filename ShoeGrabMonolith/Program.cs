@@ -1,12 +1,12 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
-using ShoeGrabMonolith.Database.Contexts;
+using ShoeGrabCommonModels.Contexts;
+using ShoeGrabMonolith.Database.Mappers;
 using ShoeGrabMonolith.Extensions;
-using ShoeGrabMonolith.Services;
 using ShoeGrabOrderManagement.Controllers;
 using ShoeGrabProductManagement.Controllers;
 using ShoeGrabUserManagement.Controllers;
-
+using ShoeGrabUserManagement.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -46,22 +46,25 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddHttpClient();
 
 //Contexts
 builder.Services.AddDbContextPool<UserContext>(opt =>
   opt.UseNpgsql(
     builder.Configuration.GetConnectionString("PostgreSQL"),
     o => o
-      .SetPostgresVersion(17, 0)));
+      .SetPostgresVersion(17, 0)
+      .MigrationsAssembly("ShoeGrabMonolith")));
 
 //Services registration
-builder.Services.AddScoped<IUserManagementService, UserManagementService>();
 builder.Services.AddTransient<ITokenService, JWTAuthenticationService>();
 
 //Security
 builder.Services.AddAuthorization();
 builder.AddJWTAuthentication();
 
+// Add AutoMapper with all profiles in the assembly
+builder.Services.AddAutoMapper(typeof(OrderMappingProfile).Assembly);
 ////APP PART////
 var app = builder.Build();
 

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using ShoeGrabCommonModels.Contexts;
@@ -11,9 +12,11 @@ using ShoeGrabCommonModels.Contexts;
 namespace ShoeGrabMonolith.Migrations
 {
     [DbContext(typeof(UserContext))]
-    partial class UserContextModelSnapshot : ModelSnapshot
+    [Migration("20250131113430_OrderManagement")]
+    partial class OrderManagement
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -139,40 +142,6 @@ namespace ShoeGrabMonolith.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("ShoeGrabCommonModels.UserProfile", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Bio")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("DateOfBirth")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId")
-                        .IsUnique();
-
-                    b.ToTable("Profiles");
-                });
-
             modelBuilder.Entity("ShoeGrabCommonModels.Order", b =>
                 {
                     b.HasOne("ShoeGrabCommonModels.User", "User")
@@ -262,15 +231,43 @@ namespace ShoeGrabMonolith.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("ShoeGrabCommonModels.UserProfile", b =>
+            modelBuilder.Entity("ShoeGrabCommonModels.User", b =>
                 {
-                    b.HasOne("ShoeGrabCommonModels.User", "User")
-                        .WithOne("Profile")
-                        .HasForeignKey("ShoeGrabCommonModels.UserProfile", "UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.OwnsOne("ShoeGrabCommonModels.UserProfile", "Profile", b1 =>
+                        {
+                            b1.Property<int>("UserId")
+                                .HasColumnType("integer");
 
-                    b.Navigation("User");
+                            b1.Property<string>("Address")
+                                .IsRequired()
+                                .HasColumnType("text");
+
+                            b1.Property<string>("Bio")
+                                .IsRequired()
+                                .HasColumnType("text");
+
+                            b1.Property<DateTime>("DateOfBirth")
+                                .HasColumnType("timestamp with time zone");
+
+                            b1.Property<int>("Id")
+                                .HasColumnType("integer");
+
+                            b1.Property<string>("PhoneNumber")
+                                .IsRequired()
+                                .HasColumnType("text");
+
+                            b1.HasKey("UserId");
+
+                            b1.ToTable("Profiles");
+
+                            b1.WithOwner("User")
+                                .HasForeignKey("UserId");
+
+                            b1.Navigation("User");
+                        });
+
+                    b.Navigation("Profile")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("ShoeGrabCommonModels.Order", b =>
@@ -281,12 +278,6 @@ namespace ShoeGrabMonolith.Migrations
             modelBuilder.Entity("ShoeGrabCommonModels.Product", b =>
                 {
                     b.Navigation("OrderItems");
-                });
-
-            modelBuilder.Entity("ShoeGrabCommonModels.User", b =>
-                {
-                    b.Navigation("Profile")
-                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

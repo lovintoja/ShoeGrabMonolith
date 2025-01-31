@@ -4,15 +4,15 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using ShoeGrabMonolith.Database.Contexts;
+using ShoeGrabCommonModels.Contexts;
 
 #nullable disable
 
 namespace ShoeGrabMonolith.Migrations
 {
     [DbContext(typeof(UserContext))]
-    [Migration("20250126205918_CreateUsersTable")]
-    partial class CreateUsersTable
+    [Migration("20250129123332_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,7 +24,7 @@ namespace ShoeGrabMonolith.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("ShoeGrabModels.Address", b =>
+            modelBuilder.Entity("ShoeGrabCommonModels.Address", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -60,17 +60,12 @@ namespace ShoeGrabMonolith.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int?>("UserId")
-                        .HasColumnType("integer");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Address");
                 });
 
-            modelBuilder.Entity("ShoeGrabModels.User", b =>
+            modelBuilder.Entity("ShoeGrabCommonModels.User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -80,35 +75,24 @@ namespace ShoeGrabMonolith.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(255)
+                        .HasColumnType("character varying(255)");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Password")
+                    b.Property<string>("PasswordHash")
                         .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Username")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Email")
+                        .IsUnique();
+
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("ShoeGrabModels.Address", b =>
-                {
-                    b.HasOne("ShoeGrabModels.User", null)
-                        .WithMany("Address")
-                        .HasForeignKey("UserId");
-                });
-
-            modelBuilder.Entity("ShoeGrabModels.User", b =>
-                {
-                    b.Navigation("Address");
                 });
 #pragma warning restore 612, 618
         }

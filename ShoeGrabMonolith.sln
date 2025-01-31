@@ -9,13 +9,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Projects", "Projects", "{AD
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoeGrabCommonModels", "ShoeGrabCommonModels\ShoeGrabCommonModels.csproj", "{35C1538E-5B91-4CEC-A9EB-9A6263448C06}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoeGrabUserManagement", "ShoeGrabUserManagement\ShoeGrabUserManagement.csproj", "{54C0639B-7CC7-443C-B4CC-571FEEC0DBBF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoeGrabUserManagement", "ShoeGrabUserManagement\ShoeGrabUserManagement.csproj", "{54C0639B-7CC7-443C-B4CC-571FEEC0DBBF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoeGrabOrderManagement", "ShoeGrabOrderManagement\ShoeGrabOrderManagement.csproj", "{15AFFA8F-E8E5-4DEE-BA6E-F6F6493FB6DD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoeGrabOrderManagement", "ShoeGrabOrderManagement\ShoeGrabOrderManagement.csproj", "{15AFFA8F-E8E5-4DEE-BA6E-F6F6493FB6DD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoeGrabProductManagement", "ShoeGrabProductManagement\ShoeGrabProductManagement.csproj", "{84F98B8C-1ED7-4475-A44F-E885C8479235}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoeGrabProductManagement", "ShoeGrabProductManagement\ShoeGrabProductManagement.csproj", "{84F98B8C-1ED7-4475-A44F-E885C8479235}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoeGrabAuthenticationManager", "ShoeGrabAuthenticationManager\ShoeGrabAuthenticationManager.csproj", "{DD171BF8-FA89-4CC9-A50D-2F0A804A9458}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoeGrabCRMService", "ShoeGrabCRMService\ShoeGrabCRMService.csproj", "{3A88851C-3A47-4062-9511-25B946F1235F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoeGrabTests", "ShoeGrabTests\ShoeGrabTests.csproj", "{6195921E-C954-4C5E-B447-8C507B46CF0D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{43384171-3A75-43F5-9ECF-CF19F6170E8B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,10 +47,14 @@ Global
 		{84F98B8C-1ED7-4475-A44F-E885C8479235}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{84F98B8C-1ED7-4475-A44F-E885C8479235}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{84F98B8C-1ED7-4475-A44F-E885C8479235}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DD171BF8-FA89-4CC9-A50D-2F0A804A9458}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DD171BF8-FA89-4CC9-A50D-2F0A804A9458}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DD171BF8-FA89-4CC9-A50D-2F0A804A9458}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DD171BF8-FA89-4CC9-A50D-2F0A804A9458}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A88851C-3A47-4062-9511-25B946F1235F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A88851C-3A47-4062-9511-25B946F1235F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A88851C-3A47-4062-9511-25B946F1235F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A88851C-3A47-4062-9511-25B946F1235F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6195921E-C954-4C5E-B447-8C507B46CF0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6195921E-C954-4C5E-B447-8C507B46CF0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6195921E-C954-4C5E-B447-8C507B46CF0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6195921E-C954-4C5E-B447-8C507B46CF0D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -56,7 +64,8 @@ Global
 		{54C0639B-7CC7-443C-B4CC-571FEEC0DBBF} = {AD3838FA-B965-4521-9F64-F71CDEE0FE5F}
 		{15AFFA8F-E8E5-4DEE-BA6E-F6F6493FB6DD} = {AD3838FA-B965-4521-9F64-F71CDEE0FE5F}
 		{84F98B8C-1ED7-4475-A44F-E885C8479235} = {AD3838FA-B965-4521-9F64-F71CDEE0FE5F}
-		{DD171BF8-FA89-4CC9-A50D-2F0A804A9458} = {AD3838FA-B965-4521-9F64-F71CDEE0FE5F}
+		{3A88851C-3A47-4062-9511-25B946F1235F} = {AD3838FA-B965-4521-9F64-F71CDEE0FE5F}
+		{6195921E-C954-4C5E-B447-8C507B46CF0D} = {43384171-3A75-43F5-9ECF-CF19F6170E8B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {56C23D38-EB86-4D78-8F37-A3B45162852A}
