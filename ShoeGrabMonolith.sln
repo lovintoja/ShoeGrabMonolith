@@ -3,7 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35027.167
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoeGrabMonolith", "ShoeGrabMonolith.csproj", "{CC799698-F280-4DBC-8C68-4DFCC582DA72}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoeGrabMonolith", "ShoeGrabMonolith\ShoeGrabMonolith.csproj", "{CC799698-F280-4DBC-8C68-4DFCC582DA72}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Projects", "Projects", "{AD3838FA-B965-4521-9F64-F71CDEE0FE5F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoeGrabCommonModels", "ShoeGrabCommonModels\ShoeGrabCommonModels.csproj", "{35C1538E-5B91-4CEC-A9EB-9A6263448C06}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoeGrabUserManagement", "ShoeGrabUserManagement\ShoeGrabUserManagement.csproj", "{54C0639B-7CC7-443C-B4CC-571FEEC0DBBF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoeGrabOrderManagement", "ShoeGrabOrderManagement\ShoeGrabOrderManagement.csproj", "{15AFFA8F-E8E5-4DEE-BA6E-F6F6493FB6DD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoeGrabProductManagement", "ShoeGrabProductManagement\ShoeGrabProductManagement.csproj", "{84F98B8C-1ED7-4475-A44F-E885C8479235}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoeGrabAuthenticationManager", "ShoeGrabAuthenticationManager\ShoeGrabAuthenticationManager.csproj", "{DD171BF8-FA89-4CC9-A50D-2F0A804A9458}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +27,36 @@ Global
 		{CC799698-F280-4DBC-8C68-4DFCC582DA72}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC799698-F280-4DBC-8C68-4DFCC582DA72}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CC799698-F280-4DBC-8C68-4DFCC582DA72}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35C1538E-5B91-4CEC-A9EB-9A6263448C06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35C1538E-5B91-4CEC-A9EB-9A6263448C06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35C1538E-5B91-4CEC-A9EB-9A6263448C06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35C1538E-5B91-4CEC-A9EB-9A6263448C06}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54C0639B-7CC7-443C-B4CC-571FEEC0DBBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54C0639B-7CC7-443C-B4CC-571FEEC0DBBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54C0639B-7CC7-443C-B4CC-571FEEC0DBBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54C0639B-7CC7-443C-B4CC-571FEEC0DBBF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15AFFA8F-E8E5-4DEE-BA6E-F6F6493FB6DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15AFFA8F-E8E5-4DEE-BA6E-F6F6493FB6DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15AFFA8F-E8E5-4DEE-BA6E-F6F6493FB6DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15AFFA8F-E8E5-4DEE-BA6E-F6F6493FB6DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84F98B8C-1ED7-4475-A44F-E885C8479235}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84F98B8C-1ED7-4475-A44F-E885C8479235}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84F98B8C-1ED7-4475-A44F-E885C8479235}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84F98B8C-1ED7-4475-A44F-E885C8479235}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD171BF8-FA89-4CC9-A50D-2F0A804A9458}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD171BF8-FA89-4CC9-A50D-2F0A804A9458}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD171BF8-FA89-4CC9-A50D-2F0A804A9458}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD171BF8-FA89-4CC9-A50D-2F0A804A9458}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{35C1538E-5B91-4CEC-A9EB-9A6263448C06} = {AD3838FA-B965-4521-9F64-F71CDEE0FE5F}
+		{54C0639B-7CC7-443C-B4CC-571FEEC0DBBF} = {AD3838FA-B965-4521-9F64-F71CDEE0FE5F}
+		{15AFFA8F-E8E5-4DEE-BA6E-F6F6493FB6DD} = {AD3838FA-B965-4521-9F64-F71CDEE0FE5F}
+		{84F98B8C-1ED7-4475-A44F-E885C8479235} = {AD3838FA-B965-4521-9F64-F71CDEE0FE5F}
+		{DD171BF8-FA89-4CC9-A50D-2F0A804A9458} = {AD3838FA-B965-4521-9F64-F71CDEE0FE5F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {56C23D38-EB86-4D78-8F37-A3B45162852A}
