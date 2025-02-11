@@ -34,6 +34,7 @@ public class BasketService : IBasketService
     {
         return await _context.Baskets
             .Include(b => b.Items)
+            .ThenInclude(bi => bi.Product)
             .FirstOrDefaultAsync(b => b.UserId == userId);
     }
 
@@ -69,6 +70,7 @@ public class BasketService : IBasketService
 
             var existingBasket = await _context.Baskets
                 .Include(b => b.Items)
+                .ThenInclude(bi => bi.Product)
                 .FirstOrDefaultAsync(b => b.UserId == userId);
 
             if (existingBasket == null)
