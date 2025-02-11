@@ -26,7 +26,7 @@ public static class BuilderExtension
             var restApiEndpoint = kestrelSection.GetSection("RestApi");
             if (restApiEndpoint.Exists())
             {
-                var restApiUrl = new Uri("http://127.0.0.1:9999");//Environment.GetEnvironmentVariable("APP_REST_URI"));
+                var restApiUrl = new Uri(Environment.GetEnvironmentVariable("APP_REST_URI"));
                 options.Listen(IPAddress.Parse(restApiUrl.Host), restApiUrl.Port, listenOptions =>
                 {
                     listenOptions.Protocols = Enum.Parse<HttpProtocols>(restApiEndpoint["Protocols"]);
