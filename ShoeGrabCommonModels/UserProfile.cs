@@ -6,7 +6,7 @@ public class UserProfile
 {
     public int Id { get; set; }
     [Required]
-    public string Address { get; set; } = string.Empty;
+    public Address Address { get; set; } = new Address();
     [Required]
     [Phone]
     public string PhoneNumber { get; set; } = string.Empty;

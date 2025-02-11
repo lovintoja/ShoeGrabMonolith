@@ -4,5 +4,5 @@ namespace ShoeGrabCRMService.Services;
 
 public interface IEmailService
 {
-    Task SendOrderConfirmationEmailAsync(string recipientEmail, string recipientName, Order order);
+    Task<bool> SendOrderConfirmationEmailAsync(string recipientEmail);
 }

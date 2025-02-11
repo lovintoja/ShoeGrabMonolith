@@ -1,10 +1,14 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.OpenApi.Models;
+using ShoeGrabAdminService.Controllers;
 using ShoeGrabCommonModels.Contexts;
+using ShoeGrabCRMService.Services;
 using ShoeGrabMonolith.Database.Mappers;
 using ShoeGrabMonolith.Extensions;
 using ShoeGrabOrderManagement.Controllers;
+using ShoeGrabOrderManagement.Services;
+using ShoeGrabProductManagement;
 using ShoeGrabProductManagement.Controllers;
+using ShoeGrabProductManagement.Services;
 using ShoeGrabUserManagement.Controllers;
 using ShoeGrabUserManagement.Services;
 
@@ -12,77 +16,70 @@ var builder = WebApplication.CreateBuilder(args);
 
 //Controllers
 builder.Services.AddControllers()
-    .AddApplicationPart(typeof(UserManagementController).Assembly)
-    .AddApplicationPart(typeof(OrderManagementController).Assembly)
-    .AddApplicationPart(typeof(ProductManagementController).Assembly);
+    .AddApplicationPart(typeof(UserController).Assembly)
+    .AddApplicationPart(typeof(OrderController).Assembly)
+    .AddApplicationPart(typeof(BasketController).Assembly)
+    .AddApplicationPart(typeof(ProductController).Assembly)
+    .AddApplicationPart(typeof(ProductManagementController).Assembly)
+    .AddApplicationPart(typeof(OrderManagementController).Assembly);
 
-//Swagger
-builder.Services.AddSwaggerGen(c =>
+builder.SetupKestrel();
+
+builder.Services.AddCors(options =>
 {
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Your API", Version = "v1" });
-
-    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    options.AddPolicy("AllowAllOrigins", policy =>
     {
-        Description = "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
-        Name = "Authorization",
-        In = ParameterLocation.Header,
-        Type = SecuritySchemeType.Http,
-        Scheme = "bearer"
-    });
-
-    c.AddSecurityRequirement(new OpenApiSecurityRequirement
-    {
-        {
-            new OpenApiSecurityScheme
-            {
-                Reference = new OpenApiReference
-                {
-                    Type = ReferenceType.SecurityScheme,
-                    Id = "Bearer"
-                }
-            },
-            new string[] {}
-        }
+        policy.AllowAnyOrigin()
+              .AllowAnyMethod()
+              .AllowAnyHeader();
     });
 });
+
+builder.Services.AddAutoMapper(typeof(GlobalMappingProfile));
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddHttpClient();
 
 //Contexts
-builder.Services.AddDbContextPool<UserContext>(opt =>
-  opt.UseNpgsql(
-    builder.Configuration.GetConnectionString("PostgreSQL"),
-    o => o
-      .SetPostgresVersion(17, 0)
-      .MigrationsAssembly("ShoeGrabMonolith")));
+if (builder.Environment.IsDevelopment())
+{
+    builder.Services.AddDbContextPool<UserContext>(opt =>
+        opt.UseNpgsql(
+            builder.Configuration.GetConnectionString("DB_CONNECTION_STRING"),
+            o => o
+                .SetPostgresVersion(17, 0)));
+}
+else
+{
+    builder.Services.AddDbContextPool<UserContext>(opt =>
+        opt.UseNpgsql(
+            Environment.GetEnvironmentVariable("DB_CONNECTION_STRING"),
+            o => o
+                .SetPostgresVersion(17, 0)));
+}
 
 //Services registration
 builder.Services.AddTransient<ITokenService, JWTAuthenticationService>();
+builder.Services.AddScoped<IEmailService, EmailService>();
+builder.Services.AddScoped<IPasswordManagement, PasswordManagement>();
+builder.Services.AddScoped<IBasketService, BasketService>();
+builder.Services.AddScoped<IOrderService, OrderService>();
 
 //Security
 builder.Services.AddAuthorization();
-builder.AddJWTAuthentication();
+builder.AddJWTAuthenticationAndAuthorization();
 
-// Add AutoMapper with all profiles in the assembly
-builder.Services.AddAutoMapper(typeof(OrderMappingProfile).Assembly);
 ////APP PART////
 var app = builder.Build();
 
 //Migrations
 app.ApplyMigrations();
 
+app.UseCors("AllowAllOrigins");
+
 //Security
 app.UseAuthentication();
 app.UseAuthorization();
-
-//Swagger
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-
-app.UseHttpsRedirection();
 
 app.MapControllers();
 

@@ -29,6 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ShoeGrabAdminService\ShoeGrabAdminService.csproj" />
     <ProjectReference Include="..\ShoeGrabCommonModels\ShoeGrabCommonModels.csproj" />
     <ProjectReference Include="..\ShoeGrabOrderManagement\ShoeGrabOrderManagement.csproj" />
     <ProjectReference Include="..\ShoeGrabProductManagement\ShoeGrabProductManagement.csproj" />
