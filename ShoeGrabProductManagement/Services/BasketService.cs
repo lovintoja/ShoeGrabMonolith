@@ -32,7 +32,9 @@ public class BasketService : IBasketService
 
     public async Task<Basket?> GetBasket(int userId)
     {
-        return await _context.Baskets.FirstOrDefaultAsync(b => b.UserId == userId);
+        return await _context.Baskets
+            .Include(b => b.Items)
+            .FirstOrDefaultAsync(b => b.UserId == userId);
     }
 
     public async Task<bool> RemoveBasket(int userId)
