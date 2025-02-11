@@ -67,18 +67,34 @@ public class BasketService : IBasketService
                 throw new ArgumentNullException(nameof(updatedBasket), "Updated basket cannot be null.");
             }
 
-            var existingBasket = await _context.Baskets.FirstOrDefaultAsync(b => b.UserId == userId);
+            var existingBasket = await _context.Baskets
+                .Include(b => b.Items)
+                .FirstOrDefaultAsync(b => b.UserId == userId);
 
             if (existingBasket == null)
             {
-                existingBasket = await CreateBasket(userId);
-                if (existingBasket == null)
+                throw new InvalidOperationException("Basket not found");
+            }
+
+            var existingItemsDict = existingBasket.Items.ToDictionary(i => i.Id);
+
+            foreach (var updatedItem in updatedBasket.Items)
+            {
+                if (existingItemsDict.TryGetValue(updatedItem.Id, out var existingItem))
                 {
-                    return false;
+                    existingItem.Quantity = updatedItem.Quantity;
+                    existingItemsDict.Remove(updatedItem.Id);
+                }
+                else
+                {
+                    existingBasket.Items.Add(updatedItem);
                 }
             }
-            _context.Entry(existingBasket).Collection(b => b.Items).IsModified = true;
-            existingBasket.Items = updatedBasket.Items;
+
+            foreach (var remainingItem in existingItemsDict.Values)
+            {
+                _context.BasketItems.Remove(remainingItem);
+            }
 
             await _context.SaveChangesAsync();
 
