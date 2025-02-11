@@ -73,10 +73,8 @@ public class OrderManagementController : ControllerBase
     public async Task<ActionResult<IEnumerable<OrderDto>>> SearchOrders(
         [FromQuery] AdminOrderSearchQuery request)
     {
-        var userId = int.Parse(User.FindFirst(ClaimTypes.Authentication).Value);
-
         var query = _context.Orders
-            .Where(o => o.UserId == userId)
+            .Where(o => o.UserId == request.UserId)
             .AsQueryable();
 
         if (request.StartDate.HasValue)

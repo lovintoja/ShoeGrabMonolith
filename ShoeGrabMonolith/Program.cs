@@ -47,7 +47,8 @@ if (builder.Environment.IsDevelopment())
         opt.UseNpgsql(
             builder.Configuration.GetConnectionString("DB_CONNECTION_STRING"),
             o => o
-                .SetPostgresVersion(17, 0)));
+                .SetPostgresVersion(17, 0)
+                .MigrationsAssembly("ShoeGrabMonolith")));
 }
 else
 {
@@ -55,7 +56,10 @@ else
         opt.UseNpgsql(
             Environment.GetEnvironmentVariable("DB_CONNECTION_STRING"),
             o => o
-                .SetPostgresVersion(17, 0)));
+                .SetPostgresVersion(17, 0)
+                .MigrationsAssembly("ShoeGrabMonolith")));
+
+        
 }
 
 //Services registration
