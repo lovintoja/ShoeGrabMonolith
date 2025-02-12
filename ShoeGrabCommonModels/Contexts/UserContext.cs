@@ -72,4 +72,10 @@ public class UserContext : DbContext
             .Property(bi => bi.Quantity)
             .IsRequired();
     }
+
+    public override async ValueTask DisposeAsync()
+    {
+        Dispose();
+        await Task.CompletedTask;
+    }
 }
