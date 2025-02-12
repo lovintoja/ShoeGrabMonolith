@@ -26,13 +26,16 @@ public class ProductManagementController : ControllerBase
     {
         try
         {
-            var product = _mapper.Map<Product>(request);
-            _context.Products.Add(product);
-            await _context.SaveChangesAsync();
-            return Ok(request);
+            using (UserContext context = new UserContext(new Microsoft.EntityFrameworkCore.DbContextOptions<UserContext>()))
+            {
+                var product = _mapper.Map<Product>(request);
+                _context.Products.Add(product);
+                await _context.SaveChangesAsync();
+                return Ok(request);
+            }
         }
         catch (Exception)
-        {
+        {  
             return BadRequest("Unable to update product");
         }
     }
